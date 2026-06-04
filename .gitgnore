@@ -1,0 +1,18 @@
+import streamlit as st
+import pandas as pd
+
+st.title("📊 Dashboard Overview")
+
+df = pd.read_csv("data/ai_student_impact_dataset.csv")
+
+st.subheader("Dataset Preview")
+st.dataframe(df.head())
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Total Students", len(df))
+col2.metric("Average GPA", round(df["Post_Semester_GPA"].mean(), 2))
+col3.metric("Average AI Hours", round(df["Weekly_GenAI_Hours"].mean(), 2))
+
+st.subheader("Dataset Statistics")
+st.write(df.describe())
